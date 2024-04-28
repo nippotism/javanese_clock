@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    color: white;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    background-color: black;
+    opacity: 0.92;
+    z-index: -1;
+}
+
+
+.pesan{
+    color : #f4eeee;
+    font-family: 'Fragment Mono', monospace;
+    font-size: 3.8rem;
+    position: absolute;
+    top: 40%;
+    /* opacity: 0.5; */
+}   
+.clock {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center horizontally */
+    font-size: 2em;
+    position: absolute; /* Position the clock absolutely */
+    top: 35%; /* Position the clock 50% down from the top of its container */
+    left: 50%; /* Position the clock 50% from the left of its container */
+    transform: translate(-50%, -50%);
+}
+
+
+
+
+
+.hour, .minute, .second {
+    color: #ffffff; /* Color of the clock numbers */
+    font-family: 'Fragment Mono', monospace;
+    padding: 0.2em 0.4em;
+    border-radius: 0.2em;
+    opacity: 0.5;
+}
+
+
+
+
+
