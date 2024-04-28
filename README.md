@@ -1,2 +1,4 @@
-# javanese_clock
-Aesthetic clock with Javanese text
+# Javanese Clock
+
+
+Aesthetic clock with javanese explained text.
