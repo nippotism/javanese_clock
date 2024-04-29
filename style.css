@@ -36,11 +36,11 @@ body::before {
 .clock {
     display: flex;
     align-items: center;
-    justify-content: center; /* Center horizontally */
+    justify-content: center;
     font-size: 2em;
-    position: absolute; /* Position the clock absolutely */
-    top: 35%; /* Position the clock 50% down from the top of its container */
-    left: 50%; /* Position the clock 50% from the left of its container */
+    position: absolute;
+    top: 35%; 
+    left: 50%; 
     transform: translate(-50%, -50%);
 }
 
@@ -49,7 +49,7 @@ body::before {
 
 
 .hour, .minute, .second {
-    color: #ffffff; /* Color of the clock numbers */
+    color: #ffffff; 
     font-family: 'Fragment Mono', monospace;
     padding: 0.2em 0.4em;
     border-radius: 0.2em;
