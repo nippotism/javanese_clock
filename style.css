@@ -34,6 +34,13 @@ body::before {
     opacity: 0.06;
 }
 
+.background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the entire container */
+    background-size: cover; /* Ensure the background image covers the entire container */
+}
+
 .pesan{
     color : #f4eeee;
     font-family: 'Fragment Mono', monospace;
