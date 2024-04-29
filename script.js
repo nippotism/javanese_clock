@@ -20,6 +20,7 @@ function updateTime() {
 
 
     document.getElementById('mesej').textContent = `${updateSchedule(hour,((Math.floor(minute/5))*5))}. `;
+    console.log(updateSchedule(23,30));
 }
 
 
@@ -36,7 +37,7 @@ function dua(jam){
 function updateSchedule(hour, minute) {
 
     const menet = {
-        '00' : '',
+        '0' : '',
         '5' : 'limo',
         '05' : 'limo',
         '10' : 'sepuloh',
@@ -48,27 +49,30 @@ function updateSchedule(hour, minute) {
 
     const jam = {
 
-        '01' : 'siji',
-        '02' : 'loro',
-        '03' : 'telu',
-        '04' : 'papat',
-        '05' : 'limo',
-        '06' : 'enem',
-        '07' : 'pitu',
-        '08' : 'wolu',
-        '09' : 'songo',
-        '10': 'spuloh',
+        '0' : 'rolas',
+        '1' : 'siji',
+        '2' : 'loro',
+        '3' : 'telu',
+        '4' : 'papat',
+        '5' : 'limo',
+        '6' : 'enem',
+        '7' : 'pitu',
+        '8' : 'wolu',
+        '9' : 'songo',
+        '10': 'sepuloh',
         '11' : 'sewelas',
         '12' : 'rolas'
     }
-    let ore = 'awan'
+    let ore = ''
 
     if(hour >= 15 && hour<18){
         ore = 'sore';
     }else if(hour >= 18){
         ore = 'bengi';
-    }else{
+    }else if(hour < 12){
         ore = 'isuk';
+    }else{
+        ore = 'awan';
     }
 
     let kuranglebih = '';
@@ -82,14 +86,18 @@ function updateSchedule(hour, minute) {
     }
 
 
-    hour > 12 ? hour = hour-12 : hour;
+    hour >= 12 ? hour = hour-12 : hour;
 
+    
     if(minute == 30 || minute == 0){
-        minute == 0 ? hour = hour : hour += 1;   
-        return ` ${menet[minute]} ${jam[dua(hour)]} ${ore}`;
+        minute == 0 ? hour = hour : hour += 1;
+        return ` ${menet[minute]} ${jam[hour]} ${ore}`;
     }else{
+        hour = minute > 30 ? parseInt(hour)+1 : hour;
+        console.log(hour);
         minute = minute < 30 ? minute : 60-minute;
-        return `${jam[dua(hour)]} ${kuranglebih} ${menet[minute]} ${ore}`;
+        
+        return `${jam[hour]} ${kuranglebih} ${menet[minute]} ${ore}`;
     }
 }
 
