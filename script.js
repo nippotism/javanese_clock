@@ -24,14 +24,6 @@ function updateTime() {
 }
 
 
-function dua(jam){
-
-    if( jam < 10) {
-        return `0${jam}`;
-    }else{
-        return jam;
-    }
-}
 
 
 function updateSchedule(hour, minute) {
@@ -69,7 +61,7 @@ function updateSchedule(hour, minute) {
         ore = 'sore';
     }else if(hour >= 18){
         ore = 'bengi';
-    }else if(hour < 12){
+    }else if(hour < 11){
         ore = 'isuk';
     }else{
         ore = 'awan';
