@@ -5,7 +5,7 @@ function updateTime() {
     let minute = now.getMinutes();
     let second = now.getSeconds();
 
-    // Formatting hour, minute, second to always have two digits
+
     hour = hour < 10 ? '0' + hour : hour;
     minute = minute < 10 ? '0' + minute : minute;
     second = second < 10 ? '0' + second : second;
@@ -14,7 +14,7 @@ function updateTime() {
     document.getElementById('minute').textContent = minute;
     document.getElementById('second').textContent = second;
 
-    // Check for schedule update
+
     const currentHourMinute = `${hour}:${minute}`;
     const message = updateSchedule(hour, minute);
 
@@ -102,8 +102,7 @@ function updateSchedule(hour, minute) {
 }
 
 
-// Update time every second
+
 setInterval(updateTime, 1000);
 
-// Initial call to display the time immediately
 updateTime();
