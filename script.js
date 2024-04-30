@@ -85,7 +85,7 @@ function updateSchedule(hour, minute) {
         minute == 0 ? hour = hour : hour += 1;
         return ` ${menet[minute]} ${jam[hour]} ${ore}`;
     }else{
-        hour = minute > 30 ? parseInt(hour)+1 : hour;
+        hour = minute > 30 ? parseInt(hour)+1 : parseInt(hour);
         console.log(hour);
         minute = minute < 30 ? minute : 60-minute;
         
