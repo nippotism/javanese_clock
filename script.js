@@ -72,7 +72,7 @@ function updateSchedule(hour, minute) {
     if(minute>30){
         kuranglebih = 'kurang';
     }else if(minute<30){
-        kuranglebih = 'lueh';
+        kuranglebih = 'luih';
     }else{
         kuranglebih = '';
     }
