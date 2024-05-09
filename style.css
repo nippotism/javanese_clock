@@ -48,7 +48,17 @@ body::before {
     position: absolute;
     top: 40%;
     /* opacity: 0.5; */
-}   
+}
+
+.pesan2{
+    color : #f4eeee;
+    font-family: 'Fragment Mono', monospace;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 52%;
+    opacity: 0.6;
+
+}
 .clock {
     display: flex;
     align-items: center;
