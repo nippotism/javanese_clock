@@ -173,8 +173,8 @@ function getNextPrayerTime(timings) {
     }else if(distanceToNextPrayer>=3 && distanceToNextPrayer<240){
         jamm = mintohourmin(distanceToNextPrayer)[0];
         menitt = mintohourmin(distanceToNextPrayer)[1];
-        console.log('lolos '+((Math.floor(menitt/5))*5)+' '+menitt);
-        document.getElementById('mesej2').textContent = `${jam[jamm]} jam ${menet[((Math.floor(menitt/10))*10)]==0? '': menet[((Math.floor(menitt/10))*10)]+' menet'}  meneh solat ${nextPrayerName}.`;
+        console.log('lolos '+((Math.floor(menitt/5))*5)+' '+menitt+' '+ jamm);
+        document.getElementById('mesej2').textContent = `${jamm<1? '':jam[jamm]+" jam"} ${menet[((Math.floor(menitt/10))*10)]==0? '': menet[((Math.floor(menitt/10))*10)]+' menet'}  meneh solat ${nextPrayerName}.`;
     }
 
 }
