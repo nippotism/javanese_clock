@@ -140,9 +140,9 @@ function getNextPrayerTime(timings) {
     const time = `${now.getHours()}:${now.getMinutes()}`;
 
     const prayerTimes = {
-        subuh: getMinutesFromTime(timings.Subuh),
-        dzuhur: getMinutesFromTime(timings.Dzuhur),
-        ashar: getMinutesFromTime(timings.Ashar),
+        Subuh: getMinutesFromTime(timings.Subuh),
+        Dzuhur: getMinutesFromTime(timings.Dzuhur),
+        Ashar: getMinutesFromTime(timings.Ashar),
         Maghrib: getMinutesFromTime(timings.Maghrib),
         Isya: getMinutesFromTime(timings.Isya)
     };
