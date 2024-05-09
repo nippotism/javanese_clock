@@ -175,7 +175,7 @@ function getNextPrayerTime(timings) {
         menitt = mintohourmin(distanceToNextPrayer)[1];
         console.log('lolos '+((Math.floor(menitt/5))*5)+' '+menitt+' '+ jamm);
         
-        document.getElementById('mesej2').textContent = `${jamm<1? '':jam[jamm]+" jam"} ${menet[((Math.floor(menitt/10))*10)]<10? jamm<10? 'delok':'': menet[((Math.floor(menitt/10))*10)]+' menet'}  meneh solat ${nextPrayerName}.`;
+        document.getElementById('mesej2').textContent = `${jamm<1? '':jam[jamm]+" jam"} ${menet[((Math.floor(menitt/10))*10)]<10? jamm<1? 'delok':'': menet[((Math.floor(menitt/10))*10)]+' menet'}  meneh solat ${nextPrayerName}.`;
     }
 
 }
