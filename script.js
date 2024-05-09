@@ -109,18 +109,11 @@ function getNextPrayerTime(timings) {
 
     const menet = {
         '0' : '',
-        '5' : 'limo',
-        '05' : 'limo',
         '10' : 'sepuloh',
-        '15' : 'seprapat',
         '20' : 'rong puloh',
-        '25' : 'selawe',
         '30' : 'telung puloh',
-        '35' : 'telung puloh limo',
         '40' : 'patang puloh',
-        '45' : 'patang puloh limo',
         '50' : 'seket',
-        '55' : 'seket limo'
 
     }
 
@@ -181,7 +174,7 @@ function getNextPrayerTime(timings) {
         jamm = mintohourmin(distanceToNextPrayer)[0];
         menitt = mintohourmin(distanceToNextPrayer)[1];
         console.log('lolos '+((Math.floor(menitt/5))*5)+' '+menitt);
-        document.getElementById('mesej2').textContent = `${jam[jamm]} jam ${menet[((Math.floor(menitt/5))*5)]==0? '': menet[((Math.floor(menitt/5))*5)]+' menet'}  meneh solat ${nextPrayerName}.`;
+        document.getElementById('mesej2').textContent = `${jam[jamm]} jam ${menet[((Math.floor(menitt/10))*10)]==0? '': menet[((Math.floor(menitt/10))*10)]+' menet'}  meneh solat ${nextPrayerName}.`;
     }
 
 }
