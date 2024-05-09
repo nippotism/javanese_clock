@@ -169,7 +169,7 @@ function getNextPrayerTime(timings) {
     
 
     if(distanceFromPreviousPrayer<10 ){
-        document.getElementById('mesej2').textContent = `Waktune solat ${previousPrayerName}.`;
+        document.getElementById('mesej2').textContent = `Wayahe solat ${previousPrayerName}.`;
     }else if(distanceToNextPrayer>=3 && distanceToNextPrayer<240){
         jamm = mintohourmin(distanceToNextPrayer)[0];
         menitt = mintohourmin(distanceToNextPrayer)[1];
