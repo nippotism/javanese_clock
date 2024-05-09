@@ -99,6 +99,11 @@ body::before {
         font-size: 1.2rem;
         top: 38%;
     }
+
+    .pesan2{
+        font-size: 0.55rem;
+        top: 42%;
+    }
     
 }
 
