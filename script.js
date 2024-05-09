@@ -19,9 +19,185 @@ function updateTime() {
     const message = updateSchedule(hour, minute);
 
 
-    document.getElementById('mesej').textContent = `${updateSchedule(hour,((Math.floor(minute/5))*5))}. `;
-    console.log(updateSchedule(23,30));
+    document.getElementById('mesej').textContent = `${updateSchedule(hour,((Math.floor(minute/5))*5))}, `;
+    JamSolat();
 }
+
+
+
+function JamSolat() {
+    const now = new Date();
+    let tahun = now.getFullYear();
+    let bulan = now.getMonth() + 1; 
+    let hari = now.getDate();
+    let api = `//api.aladhan.com/v1/calendarByCity/${tahun}/${bulan}?city=semarang&country=Indonesia&method=20`;
+
+    let data;
+
+    fetch(api)
+        .then(response => response.json())
+        .then(apiData => {
+
+            data = apiData; 
+            jammsolat(data);
+
+            console.log('data received', data);
+        })
+        .catch(error => console.error('Error fetching prayer timings:', error));
+
+    
+}
+
+function sholatonly(timings) {
+    const solatsaja = {};
+    const solatNames = {
+        Fajr: 'Subuh',
+        Dhuhr: 'Dzuhur',
+        Asr: 'Ashar',
+        Maghrib: 'Maghrib',
+        Isha: 'Isya'
+    };
+
+    for (const prayer in solatNames) {
+        if (timings.hasOwnProperty(prayer)) {
+            solatsaja[solatNames[prayer]] = timings[prayer];
+        }
+    }
+
+    return solatsaja;
+}
+
+
+function jammsolat(data){
+
+    
+    
+    const now = new Date();
+    let tahun = now.getFullYear();
+    let bulan = (now.getMonth() + 1)<10 ? '0'+(now.getMonth() + 1) : (now.getMonth() + 1);
+    let hari = now.getDate()<10 ? '0'+now.getDate() : now.getDate();
+    
+    
+    for(let i = 0; i < 31 ; i++){
+        
+        let datestr =`${hari}-${bulan}-${tahun}`;
+        let datebener = data.data[i].date.gregorian.date;
+        
+        if(datestr == datebener){
+            
+            // console.log('ketmu');
+                    let timings = data.data[i].timings;
+                    for (let key in timings) {
+                        if (timings.hasOwnProperty(key)) {
+                            timings[key] = timings[key].replace(' (WIB)', '');
+                        }
+                    }
+                    hanyasolat = sholatonly(timings);
+                    getNextPrayerTime(hanyasolat);
+
+        }
+    }
+
+}
+
+function getMinutesFromTime(time) {
+    const [hours, minutes] = time.split(':').map(Number);
+    return hours * 60 + minutes;
+}
+
+function getNextPrayerTime(timings) {
+
+    const menet = {
+        '0' : '',
+        '5' : 'limo',
+        '05' : 'limo',
+        '10' : 'sepuloh',
+        '15' : 'seprapat',
+        '20' : 'rong puloh',
+        '25' : 'selawe',
+        '30' : 'telung puloh',
+        '35' : 'telung puloh limo',
+        '40' : 'patang puloh',
+        '45' : 'patang puloh limo',
+        '50' : 'seket',
+        '55' : 'seket limo'
+
+    }
+
+    const jam = {
+
+        '0' : 'rolas',
+        '01' : 'sak',
+        '02' : 'rong',
+        '03' : 'telung',
+        '04' : 'patang',
+        '05' : 'limang',
+        '06' : 'enem',
+        '07' : 'pitung',
+        '08' : 'wolung',
+        '09' : 'sangang',
+        '10': 'sepuloh',
+        '11' : 'sewelas',
+        '12' : 'rolas'
+    }
+
+
+    const now = new Date();
+    const currentTime = now.getHours() * 60 + now.getMinutes();
+    const time = `${now.getHours()}:${now.getMinutes()}`;
+
+    const prayerTimes = {
+        subuh: getMinutesFromTime(timings.Subuh),
+        dzuhur: getMinutesFromTime(timings.Dzuhur),
+        ashar: getMinutesFromTime(timings.Ashar),
+        Maghrib: getMinutesFromTime(timings.Maghrib),
+        Isya: getMinutesFromTime(timings.Isya)
+    };
+
+    const sortedPrayerTimes = Object.entries(prayerTimes).sort((a, b) => a[1] - b[1]);
+
+    let nextPrayerName;
+    let distanceToNextPrayer = Infinity;
+    let previousPrayerName;
+    let distanceFromPreviousPrayer = Infinity;
+
+    for (let i = 0; i < sortedPrayerTimes.length; i++) {
+        const timeDifference = sortedPrayerTimes[i][1] - currentTime;
+        if (timeDifference >= 0) {
+            if (i > 0) {
+                previousPrayerName = sortedPrayerTimes[i - 1][0];
+                distanceFromPreviousPrayer = currentTime - sortedPrayerTimes[i - 1][1];
+            }
+            nextPrayerName = sortedPrayerTimes[i][0];
+            distanceToNextPrayer = timeDifference;
+            break;
+        }
+    }
+    
+
+    if(distanceFromPreviousPrayer<10){
+        document.getElementById('mesej2').textContent = `Waktune solat ${previousPrayerName}.`;
+    }else if(distanceToNextPrayer>=3 && distanceToNextPrayer<240){
+        jamm = mintohourmin(distanceToNextPrayer)[0];
+        menitt = mintohourmin(distanceToNextPrayer)[1];
+        console.log('lolos '+((Math.floor(menitt/5))*5)+' '+menitt);
+        document.getElementById('mesej2').textContent = `${jam[jamm]} jam ${menet[((Math.floor(menitt/5))*5)]==0? '': menet[((Math.floor(menitt/5))*5)]+' menet'}  meneh solat ${nextPrayerName}.`;
+    }
+
+}
+
+function mintohourmin(minutes) {
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+    const formattedHours = String(hours).padStart(2, '0');
+    const formattedMinutes = String(remainingMinutes).padStart(2, '0'); 
+    return [formattedHours, formattedMinutes];
+}
+
+
+
+
+
 
 
 
@@ -72,7 +248,7 @@ function updateSchedule(hour, minute) {
     if(minute>30){
         kuranglebih = 'kurang';
     }else if(minute<30){
-        kuranglebih = 'lueh';
+        kuranglebih = 'luwih';
     }else{
         kuranglebih = '';
     }
@@ -82,11 +258,11 @@ function updateSchedule(hour, minute) {
 
     
     if(minute == 30 || minute == 0){
-        minute == 0 ? hour = hour : hour += 1;
+        minute == 0 ? hour = parseInt(hour) : parseInt(hour += 1);
         return ` ${menet[minute]} ${jam[hour]} ${ore}`;
     }else{
-        hour = minute > 30 ? parseInt(hour)+1 : hour;
-        console.log(hour);
+        hour = minute > 30 ? parseInt(hour)+1 : parseInt(hour);
+        // console.log(hour);
         minute = minute < 30 ? minute : 60-minute;
         
         return `${jam[hour]} ${kuranglebih} ${menet[minute]} ${ore}`;
@@ -96,5 +272,7 @@ function updateSchedule(hour, minute) {
 
 
 setInterval(updateTime, 1000);
+
+JamSolat();
 
 updateTime();
