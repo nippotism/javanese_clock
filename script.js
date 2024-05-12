@@ -108,7 +108,15 @@ function getMinutesFromTime(time) {
 function getNextPrayerTime(timings) {
 
     const menet = {
-        '0' : '',
+        '1' : 'sak',
+        '2' : 'rong',
+        '3' : 'telung',
+        '4' : 'patang',
+        '5' : 'limo',
+        '6' : 'enem',
+        '7' : 'pitung',
+        '8' : 'wolung',
+        '9' : 'sangang',
         '10' : 'sepuloh',
         '20' : 'rong puloh',
         '30' : 'telung puloh',
@@ -154,6 +162,9 @@ function getNextPrayerTime(timings) {
     let previousPrayerName;
     let distanceFromPreviousPrayer = Infinity;
 
+
+    console.log(timings);
+
     for (let i = 0; i < sortedPrayerTimes.length; i++) {
         const timeDifference = sortedPrayerTimes[i][1] - currentTime;
         if (timeDifference >= 0) {
@@ -174,9 +185,19 @@ function getNextPrayerTime(timings) {
     }else if(distanceToNextPrayer>=20 && distanceToNextPrayer<180){
         jamm = mintohourmin(distanceToNextPrayer)[0];
         menitt = mintohourmin(distanceToNextPrayer)[1];
-        console.log('lolos '+((Math.floor(menitt/5))*5)+' '+menitt+' '+ jamm);
+
+        menitper10 = ((Math.floor(menitt/10))*10) 
+
+        if(menitt<10){
+            if(jamm<1){
+                document.getElementById('mesej2').textContent = `${menet[menitt]} menet neh solat ${nextPrayerName}.`;
+            }else{
+                document.getElementById('mesej2').textContent = `${jamm<1? '':jam[jamm]+" jam"} ${menet[menitper10]} menit meneh solat ${nextPrayerName}.`;
+            }   
+        }else{
+            document.getElementById('mesej2').textContent = `${jamm<1? '':jam[jamm]+" jam"} ${menet[menitper10]} menit meneh solat ${nextPrayerName}.`;
+        }
         
-        document.getElementById('mesej2').textContent = `${jamm<1? '':jam[jamm]+" jam"} ${menet[((Math.floor(menitt/10))*10)]<10 && jamm<1 ? 'delok': menet[((Math.floor(menitt/10))*10)]+' menet'}  meneh solat ${nextPrayerName}.`;
     }
 
 }
