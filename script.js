@@ -190,7 +190,7 @@ function getNextPrayerTime(timings) {
 
         if(menitt<10){
             if(jamm<1){
-                document.getElementById('mesej2').textContent = `${menet[menitt]} menet neh solat ${nextPrayerName}.`;
+                document.getElementById('mesej2').textContent = `${menet[menitt]} menit neh solat ${nextPrayerName}.`;
             }else{
                 document.getElementById('mesej2').textContent = `${jamm<1? '':jam[jamm]+" jam"} ${menet[menitper10]} menit meneh solat ${nextPrayerName}.`;
             }   
