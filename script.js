@@ -177,12 +177,14 @@ function getNextPrayerTime(timings) {
             break;
         }
     }
+
+    console.log("sebelumnya " +previousPrayerName+" "+distanceFromPreviousPrayer + " selanjutnya "+nextPrayerName+" "+distanceToNextPrayer);
     
 
-    if(distanceFromPreviousPrayer<20 ){
+    if(distanceFromPreviousPrayer<20){
         console.log(distanceFromPreviousPrayer)
         document.getElementById('mesej2').textContent = `Wayahe solat ${previousPrayerName}.`;
-    }else if(distanceToNextPrayer>=20 && distanceToNextPrayer<180){
+    }else if(distanceToNextPrayer>0 && distanceToNextPrayer<180){
         jamm = mintohourmin(distanceToNextPrayer)[0];
         menitt = mintohourmin(distanceToNextPrayer)[1];
 
