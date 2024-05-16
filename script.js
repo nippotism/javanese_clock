@@ -108,15 +108,15 @@ function getMinutesFromTime(time) {
 function getNextPrayerTime(timings) {
 
     const menet = {
-        '1' : 'sak',
-        '2' : 'rong',
-        '3' : 'telung',
-        '4' : 'patang',
-        '5' : 'limo',
-        '6' : 'enem',
-        '7' : 'pitung',
-        '8' : 'wolung',
-        '9' : 'sangang',
+        '01' : 'sak',
+        '02' : 'rong',
+        '03' : 'telung',
+        '04' : 'patang',
+        '05' : 'limo',
+        '06' : 'enem',
+        '07' : 'pitung',
+        '08' : 'wolung',
+        '09' : 'sangang',
         '10' : 'sepuloh',
         '20' : 'rong puloh',
         '30' : 'telung puloh',
@@ -192,6 +192,7 @@ function getNextPrayerTime(timings) {
 
         if(menitt<10){
             if(jamm<1){
+                console.log('lolos');
                 document.getElementById('mesej2').textContent = `${menet[menitt]} menit neh solat ${nextPrayerName}.`;
             }else{
                 document.getElementById('mesej2').textContent = `${jamm<1? '':jam[jamm]+" jam"} ${menet[menitper10]} menit meneh solat ${nextPrayerName}.`;
