@@ -30,7 +30,7 @@ function JamSolat() {
     let tahun = now.getFullYear();
     let bulan = now.getMonth() + 1; 
     let hari = now.getDate();
-    let api = `//api.aladhan.com/v1/calendarByCity/${tahun}/${bulan}?city=semarang&country=Indonesia&method=20`;
+    let api = `//api.aladhan.com/v1/calendarByCity/${tahun}/${bulan}?city=jakarta&country=Indonesia&method=20`;
 
     let data;
 
