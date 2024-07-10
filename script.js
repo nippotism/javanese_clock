@@ -108,6 +108,8 @@ function getMinutesFromTime(time) {
 function getNextPrayerTime(timings) {
 
     const menet = {
+        '00' : '',
+        '0': '',
         '01' : 'sak',
         '02' : 'rong',
         '03' : 'telung',
@@ -179,6 +181,7 @@ function getNextPrayerTime(timings) {
     }
 
     console.log("sebelumnya " +previousPrayerName+" "+distanceFromPreviousPrayer + " selanjutnya "+nextPrayerName+" "+distanceToNextPrayer);
+    console.log(((Math.floor(6/10))*10) );
     
 
     if(distanceFromPreviousPrayer<20){
@@ -189,6 +192,8 @@ function getNextPrayerTime(timings) {
         menitt = mintohourmin(distanceToNextPrayer)[1];
 
         menitper10 = ((Math.floor(menitt/10))*10) 
+
+
 
         if(menitt<10){
             if(jamm<1){
