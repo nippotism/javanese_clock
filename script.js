@@ -198,7 +198,7 @@ function getNextPrayerTime(timings) {
         if(menitt<10){
             if(jamm<1){
                 console.log('lolos');
-                document.getElementById('mesej2').textContent = `${menet[menitt]} ${menitt=0?'':'menit'} neh solat ${nextPrayerName}.`;
+                document.getElementById('mesej2').textContent = `${menet[menitt]} ${menitt==0?'':'menit'} neh solat ${nextPrayerName}.`;
             }else{
                 document.getElementById('mesej2').textContent = `${jamm<1? '':jam[jamm]+" jam"} ${menet[menitper10]} menit meneh solat ${nextPrayerName}.`;
             }   
